@@ -25,6 +25,14 @@ export function app(): express.Express {
     index: 'index.html',
   }));
 
+
+
+  const MockBrowser = require('mock-browser').mocks.MockBrowser;
+const mock = new MockBrowser();
+
+
+global['navigator'] = mock.getNavigator();
+
   // All regular routes use the Angular engine
   server.get('**', (req, res, next) => {
     const { protocol, originalUrl, baseUrl, headers } = req;
